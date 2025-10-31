@@ -35,7 +35,7 @@
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="quienesSomos">Quienes Somos</a>
                         </li>
                     </ul>
-                    <img src="images/Usuario.png" width="80px" id="iconoUsuario" onclick="mostrarLogin()">
+                    <img @(Url.Content("~/Usuario.png")) width="80px" id="iconoUsuario" onclick="mostrarLogin()">
                 </div>
             </div>
         </nav>
