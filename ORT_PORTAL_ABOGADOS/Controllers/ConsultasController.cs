@@ -54,10 +54,12 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descripcion,Precio,NombreCliente,ApellidoCliente,MailCliente,EstaActiva")] Consulta consulta)
+        public async Task<IActionResult> Create([Bind("Id,Descripcion,NombreCliente,ApellidoCliente,MailCliente")] Consulta consulta)
         {
             if (ModelState.IsValid)
             {
+                consulta.Precio = 0;
+                consulta.EstaActiva = false;
                 _context.Add(consulta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
