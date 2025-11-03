@@ -27,13 +27,7 @@ namespace ORT_PORTAL_ABOGADOS.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AbogadoId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AbogadoId1")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"))
 
                     b.Property<string>("ApellidoCliente")
                         .IsRequired()
@@ -59,10 +53,6 @@ namespace ORT_PORTAL_ABOGADOS.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AbogadoId");
-
-                    b.HasIndex("AbogadoId1");
 
                     b.ToTable("Consultas");
                 });
