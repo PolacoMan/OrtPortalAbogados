@@ -1,0 +1,91 @@
+﻿@model ORT_PORTAL_ABOGADOS.Models.Consulta
+
+@{
+    ViewData["Title"] = "Crear";
+}
+</header>
+<div style="text-align: center; margin-top: 5%">
+    <h1 class="titulo" id="titulo2">Crear Solicitud</h1>
+</div>
+<div>
+    <button id="crearSol"><a asp-controller="Home" asp-action="Index" style="color:aliceblue">Volver al Inicio</a></button>
+</div>
+<hr/>
+<div class="row" id="formConsulta">
+    <form id="crearSolForm" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-grid">
+            <div class="form-col">
+                <label asp-for="NombreCliente" class="control-label">Nombre:</label>
+                <input asp-for="NombreCliente" class="texto input-field" placeholder="Nombre..." />
+                <span asp-validation-for="NombreCliente" class="text-danger"></span>
+            </div>
+
+            <div class="form-col">
+                <label asp-for="ApellidoCliente" class="control-label"></label>
+                <input asp-for="ApellidoCliente" class="texto input-field" placeholder="Apellido..." />
+                <span asp-validation-for="ApellidoCliente" class="text-danger"></span>
+            </div>
+
+            <div class="form-col">
+                <label asp-for="MailCliente" class="control-label"></label>
+                <input asp-for="MailCliente" class="texto input-field" placeholder="Mail..."/>
+                <span asp-validation-for="MailCliente" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group full-width">
+            <label asp-for="Descripcion" class="control-label"></label>
+            <textarea asp-for="Descripcion" id="form-descrip" style="color: aliceblue" placeholder="Describa el objeto de su consulta..."></textarea>
+            <span asp-validation-for="Descripcion" class="text-danger"></span>
+        </div>
+
+        <div class="form-group text-center">
+            <input id="crearSol" type="submit" value="Crear" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+<footer id="Pie">
+    <h3>Nuestro contacto</h3>
+    <hr style="color: aliceblue;">
+    <br>
+    <br>
+    <div id="contactos">
+        <div>
+            <img src="@(Url.Content("~/images/telefono.png"))" class="Contacto">
+            <p class="contactoTexto"><a href="tel: +5401138595555" id="c1" class="link">Llamanos</a></p>
+        </div>
+        <div>
+            <img src="@(Url.Content("~/images/mail.png"))" class="Contacto">
+            <p class="contactoTexto"><a href="mailto:aguszaku@gmail.com" id="c1" class="link">Escribinos</a></p>
+        </div>
+        <div>
+            <img src="@(Url.Content("~/images/whatsapp.png"))" class="Contacto">
+            <p class="contactoTexto">
+                <a href="https://wa.me/1138595555" target="_blank" id="c1" class="link">
+                    Chateá
+                    con
+                    nosotros
+                </a>
+            </p>
+        </div>
+    </div>
+    <p id="textoPie">
+        © 2025 Equipo 8 | Todos los derechos reservados. <a class="link" target="_blank"
+                                                            href="politicas.html">Política de Privacidad</a>
+    </p>
+</footer>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @if (TempData["CrearExitoso"] != null)
+    {
+        <script>
+            alert('Su consulta se ha creado correctamente.');
+            window.location.href = '@Url.Action("Index","Home")';
+        </script>
+    }
+}

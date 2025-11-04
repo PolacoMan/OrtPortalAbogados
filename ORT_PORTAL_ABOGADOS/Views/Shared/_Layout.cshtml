@@ -35,6 +35,7 @@
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="quienesSomos">Quienes Somos</a>
                         </li>
                     </ul>
+                    <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Crear">Solicitar Consulta</a>
                     <img src=@(Url.Content("~/images/Usuario.png")) width="80px" id="iconoUsuario" onclick="mostrarLogin()">
                 </div>
             </div>
@@ -46,6 +47,25 @@
         </main>
     </div>
     </header>
+
+    <form id="formularioLogin">
+        <p id="tituloForm">Iniciar sesión</p>
+        <hr>
+        <input type="text" id="usuario" class="campo" placeholder="Usuario" required><br>
+        <input type="password" id="contrasena" class="campo" placeholder="Contraseña" required><br><br>
+        <div style="display: flex; justify-content: space-between">
+            <button type="submit" class="login-btn" id="ingresar">Ingresar</button>
+            <button type="button" class="login-btn" id="cancelar">Cancelar</button>
+        </div>
+    </form>
+
+    @if (TempData["CrearExitoso"] != null)
+    {
+        <script>
+            alert('Su consulta se ha creado correctamente.');
+            window.location.href = '@Url.Action("Index","Home")';
+        </script>
+    }
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

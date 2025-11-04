@@ -5,18 +5,16 @@
 function mostrarLogin() {
     let formulario = document.getElementById('formularioLogin');
     let icono = document.getElementById('iconoUsuario');
+    let cerrar = document.getElementById('cancelar');
 
     icono.addEventListener('click', function () {
         formulario.style.display = "block";
     });
 
+    cerrar.addEventListener('click', function () {
+        formulario.style.display = "none";
+    });
 }
 window.onload = mostrarLogin;
 
-function validarLogin() {
-    let formulario = document.getElementById('formularioLogin');
 
-    formulario.addEventListener('submit', function () {
-    });
-
-}

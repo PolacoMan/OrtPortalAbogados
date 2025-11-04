@@ -1,0 +1,38 @@
+@model ORT_PORTAL_ABOGADOS.Models.Consulta
+
+<div id="consultaPopup" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:1050;">
+    <div id="consultaContent" style="background:white; margin:6% auto; padding:16px; width:90%; max-width:600px;">
+        <button type="button" id="closeConsulta" style="float:right">Cerrar</button>
+        <h3>Solicitar Consulta</h3>
+
+        <form asp-controller="Consultas" asp-action="Create" method="post" id="formPopupConsulta">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div>
+                <label asp-for="Descripcion"></label>
+                <input asp-for="Descripcion" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="NombreCliente"></label>
+                <input asp-for="NombreCliente" />
+                <span asp-validation-for="NombreCliente" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="ApellidoCliente"></label>
+                <input asp-for="ApellidoCliente" />
+                <span asp-validation-for="ApellidoCliente" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="MailCliente"></label>
+                <input asp-for="MailCliente" />
+                <span asp-validation-for="MailCliente" class="text-danger"></span>
+            </div>
+            <div>
+                <input type="submit" value="Crear" />
+                <button type="button" id="cancelConsulta">Cancelar</button>
+            </div>
+        </form>
+    </div>
+</div>

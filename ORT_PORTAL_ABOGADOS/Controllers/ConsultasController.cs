@@ -48,7 +48,10 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
         {
             return View();
         }
-
+        public IActionResult Crear()
+        {
+            return View();
+        }
         // POST: Consultas/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -62,7 +65,10 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
                 consulta.EstaActiva = false;
                 _context.Add(consulta);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                TempData["CrearExitoso"] = "true";
+
+                return RedirectToAction(nameof(Crear));
             }
             return View(consulta);
         }
