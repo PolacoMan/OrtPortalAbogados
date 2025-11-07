@@ -19,6 +19,13 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> ConsultasActivas()
+        {
+            //método del controller para mostrar consultas activas
+            var consultasActivasList = await _context.Consultas.Where(c => c.EstaActiva == true).ToListAsync();
+            return View(consultasActivasList);
+        }
+
         // GET: Consultas
         public async Task<IActionResult> Index()
         {
@@ -126,6 +133,24 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
 
         // GET: Consultas/Delete/5
         public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var consulta = await _context.Consultas
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (consulta == null)
+            {
+                return NotFound();
+            }
+
+            return View(consulta);
+        }
+
+        // GET: Consultas/Delete/5
+        public async Task<IActionResult> FinalizarConsulta(int? id)
         {
             if (id == null)
             {

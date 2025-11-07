@@ -1,0 +1,65 @@
+﻿@model List<ORT_PORTAL_ABOGADOS.Models.Consulta>
+
+@{
+    ViewData["Title"] = "Consultas Activas";
+}
+
+</header>
+<h2>Consultas Activas</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Consulta N#</th>
+            <th>Descripción</th>
+            <th>Nombre Cliente</th>
+            <th>Mail Cliente</th>
+            <th>Cotización Honorarios</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var consulta in Model)
+        {
+            <tr>
+                <td>@consulta.Id</td>
+                <td>@consulta.Descripcion</td>
+                <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
+                <td>@consulta.MailCliente</td>
+                <td>@consulta.Precio</td>
+                <td><button> <a asp-controller="Consultas" asp-action="FinalizarConsulta" asp-route-id="@consulta.Id">Finalizar Consulta</a></button></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<footer id="Pie">
+    <h3>Nuestro contacto</h3>
+    <hr style="color: aliceblue;">
+    <br>
+    <br>
+    <div id="contactos">
+        <div>
+            <img src="@(Url.Content("~/images/telefono.png"))" class="Contacto">
+            <p class="contactoTexto"><a href="tel: +5401138595555" id="c1" class="link">Llamanos</a></p>
+        </div>
+        <div>
+            <img src="@(Url.Content("~/images/mail.png"))" class="Contacto">
+            <p class="contactoTexto"><a href="mailto:aguszaku@gmail.com" id="c1" class="link">Escribinos</a></p>
+        </div>
+        <div>
+            <img src="@(Url.Content("~/images/whatsapp.png"))" class="Contacto">
+            <p class="contactoTexto">
+                <a href="https://wa.me/1138595555" target="_blank" id="c1" class="link">
+                    Chateá
+                    con
+                    nosotros
+                </a>
+            </p>
+        </div>
+    </div>
+    <p id="textoPie">
+        © 2025 Equipo 8 | Todos los derechos reservados. <a class="link" target="_blank"
+                                                            href="politicas.html">Política de Privacidad</a>
+    </p>
+</footer>
