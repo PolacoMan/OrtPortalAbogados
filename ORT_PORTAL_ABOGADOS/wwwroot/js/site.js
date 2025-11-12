@@ -15,6 +15,24 @@ function mostrarLogin() {
         formulario.style.display = "none";
     });
 }
-window.onload = mostrarLogin;
+function setPrecio() {
+    let btnsSetPrecio = document.getElementsByClassName('btn-precio');
+    let precios = document.getElementsByName('precio');
+    let aceptarBtns = document.getElementsByClassName('btn-aceptar');
+
+    for (let i = 0; i < btnsSetPrecio.length; i++) {
+        btnsSetPrecio[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            let precio = precios[i].value;
+            if (precio && parseInt(precio) > 0) {
+                aceptarBtns[i].style.display = "inline-block";
+            }
+        });
+    }
+}
 
 
+window.onload = function () {
+    mostrarLogin();
+    setPrecio();
+};

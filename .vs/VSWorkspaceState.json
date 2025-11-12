@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ORT_PORTAL_ABOGADOS",
+    "\\ORT_PORTAL_ABOGADOS\\Views",
+    "\\ORT_PORTAL_ABOGADOS\\Views\\Consultas"
   ],
+  "SelectedNode": "\\ORT_PORTAL_ABOGADOS.sln",
   "PreviewInSolutionExplorer": false
 }

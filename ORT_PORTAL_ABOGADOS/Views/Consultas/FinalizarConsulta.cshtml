@@ -5,12 +5,13 @@
 }
 
 </header>
-<h1>Finalización de Consulta</h1>
 
-<h3>¿Está seguro de Finalizar la Consulta?</h3>
-<div>
-    <h4>Consulta</h4>
+<h3 style="color: black">¿Está seguro de Finalizar la Consulta?</h3>
+<br />
+<br />
+    <h4 style="text-align: center">Consulta</h4>
     <hr />
+<div style="margin-left : 10%">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -50,9 +51,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
+    <form asp-action="FinalizarConsulta">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Finalizar" class="btn btn-danger"/> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Finalizar" class="btn btn-danger"/>
+        <a asp-action="ConsultasActivas">Volver a la lista</a>
     </form>
 </div>

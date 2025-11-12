@@ -1,11 +1,11 @@
 ﻿@model List<ORT_PORTAL_ABOGADOS.Models.Consulta>
 
 @{
-    ViewData["Title"] = "Consultas Activas";
+    ViewData["Title"] = "Solicitudes Pendientes";
 }
 
 </header>
-<h2 style="color: black">Consultas Activas</h2>
+<h2 style="color: black">Solicitudes Pendientes</h2>
 
 <table class="table">
     <thead>
@@ -14,8 +14,9 @@
             <th>Descripción</th>
             <th>Nombre Cliente</th>
             <th>Mail Cliente</th>
-            <th>Cotización Honorarios</th>
-            <th>Acción</th>
+            <th>Definir Precio</th>
+            <th>Aceptar</th>
+            <th>Rechazar</th>
         </tr>
     </thead>
     <tbody>
@@ -26,13 +27,25 @@
                 <td>@consulta.Descripcion</td>
                 <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
                 <td>@consulta.MailCliente</td>
-                <td>@consulta.Precio</td>
-                <td><button> <a asp-controller="Consultas" asp-action="FinalizarConsulta" asp-route-id="@consulta.Id">Finalizar Consulta</a></button></td>
+                <td>
+                    <form asp-controller="Consultas" asp-action="SetPrecio" method="post" class="form-precio" data-id="@consulta.Id">
+                        <input type="hidden" name="consultaId" value="@consulta.Id" />
+                        <input type="number" min="1" name="precio" class="campo" placeholder="Precio" required>
+                        <button type="submit" class="login-btn btn-precio">Ingresar</button>
+                    </form>
+                </td>
+                <td>
+                    <a asp-controller="Consultas" asp-action="AceptarSolicitud" asp-route-id="@consulta.Id"
+                       class="btn-aceptar" style="display:none">Aceptar Solicitud</a>
+                </td>
+                <td>
+                    <a asp-controller="Consultas" asp-action="RechazarSolicitud" asp-route-id="@consulta.Id"
+                       class="btn-rechazar">Rechazar Solicitud</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-
 <footer id="Pie" style="margin-top : 250px">
     <h3>Nuestro contacto</h3>
     <hr style="color: aliceblue;">

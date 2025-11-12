@@ -475,3 +475,27 @@ label {
     margin-left: auto;
     margin-right: auto
 }
+
+#consultas {
+    display: inline;
+    background-color: darkslategrey;
+    border-radius: 20px;
+    padding: 10px;
+    border: thin solid goldenrod;
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+#formularioPrecio {
+    display: none;
+    height: 35%;
+    position: fixed;
+    top: 40%;
+    left: 30%;
+    right: 30%;
+    bottom: 30%;
+    background-color: aliceblue;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px
+}

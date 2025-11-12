@@ -17,6 +17,7 @@ namespace ORT_PORTAL_ABOGADOS.Models
         public String ApellidoCliente { get; set; }
         public String MailCliente { get; set; }
         public bool EstaActiva { get; set; }
+        public int  IdAbogado { get; set; }
 
         //Métodos ------------------------------------------------------------------------------
         public Consulta() {

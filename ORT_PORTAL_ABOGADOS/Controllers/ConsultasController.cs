@@ -21,11 +21,16 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
 
         public async Task<IActionResult> ConsultasActivas()
         {
-            //método del controller para mostrar consultas activas
+            //método del controller para mostrar las consultas activas
             var consultasActivasList = await _context.Consultas.Where(c => c.EstaActiva == true).ToListAsync();
             return View(consultasActivasList);
         }
-
+        public async Task<IActionResult> SolicitudesPendientes()
+        {
+            //método del controller para mostrar las solicitudes pendientes
+            var solicitudesList = await _context.Consultas.Where(c => c.EstaActiva == false && c.IdAbogado == 0).ToListAsync();
+            return View(solicitudesList);
+        }
         // GET: Consultas
         public async Task<IActionResult> Index()
         {
@@ -182,9 +187,52 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost, ActionName("FinalizarConsulta")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FinalizConf(int id)
+        {
+            var consulta = await _context.Consultas.FindAsync(id);
+            if (consulta != null)
+            {
+                _context.Consultas.Remove(consulta);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(ConsultasActivas));
+        }
+
         private bool ConsultaExists(int id)
         {
             return _context.Consultas.Any(e => e.Id == id);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SetPrecio(int consultaId, int precio)
+        {
+            var consulta = await _context.Consultas.FindAsync(consultaId);
+            if (consulta == null)
+                return NotFound();
+
+            consulta.SetPrecio(precio);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(SolicitudesPendientes));
+        }
+
+        public async Task<IActionResult> AceptarSolicitud(int id)
+        {
+            var consulta = await _context.Consultas.FindAsync(id);
+            if (consulta == null)
+                return NotFound();
+
+            if (consulta.Precio != 0)
+            {
+                consulta.CambiarEstado();
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(SolicitudesPendientes));
+        }
+
     }
 }
