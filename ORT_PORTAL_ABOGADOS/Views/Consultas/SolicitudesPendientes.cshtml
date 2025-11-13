@@ -35,8 +35,11 @@
                     </form>
                 </td>
                 <td>
-                    <a asp-controller="Consultas" asp-action="AceptarSolicitud" asp-route-id="@consulta.Id"
-                       class="btn-aceptar" style="display:none">Aceptar Solicitud</a>
+                    <form asp-controller="Consultas" asp-action="AceptarSolicitud" method="post" class="form-aceptar" style="display:none">
+                        <input type="hidden" name="id" value="@consulta.Id" />
+                        <input type="hidden" name="precio" class="input-precio-hidden" />
+                        <button type="submit" class="btn-aceptar">Aceptar Solicitud</button>
+                    </form>
                 </td>
                 <td>
                     <a asp-controller="Consultas" asp-action="RechazarSolicitud" asp-route-id="@consulta.Id"

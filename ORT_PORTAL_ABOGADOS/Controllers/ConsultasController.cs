@@ -206,30 +206,21 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
             return _context.Consultas.Any(e => e.Id == id);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SetPrecio(int consultaId, int precio)
-        {
-            var consulta = await _context.Consultas.FindAsync(consultaId);
-            if (consulta == null)
-                return NotFound();
-
-            consulta.SetPrecio(precio);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(SolicitudesPendientes));
-        }
-
-        public async Task<IActionResult> AceptarSolicitud(int id)
+        public async Task<IActionResult> AceptarSolicitud(int id, double precio)
         {
             var consulta = await _context.Consultas.FindAsync(id);
             if (consulta == null)
                 return NotFound();
 
-            if (consulta.Precio != 0)
-            {
-                consulta.CambiarEstado();
-                await _context.SaveChangesAsync();
-            }
+            //if (consulta.Precio != 0)
+            //{
+            //    consulta.CambiarEstado();
+            //    await _context.SaveChangesAsync();
+            //}
+
+            consulta.SetPrecio(precio);
+            consulta.CambiarEstado();
+            await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(SolicitudesPendientes));
         }
