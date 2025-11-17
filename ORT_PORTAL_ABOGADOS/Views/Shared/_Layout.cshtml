@@ -22,10 +22,10 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item" style="display:none">
+                        <li class="nav-item" >
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Abogados" asp-action="Index">Abogado</a>
                         </li>
-                        <li class="nav-item" >
+                        <li class="nav-item" style="display: none">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Index">Consulta</a>
                         </li>
                         <li class="nav-item">
@@ -34,14 +34,17 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="quienesSomos">Quienes Somos</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="display:none">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="SolicitudesPendientes">Solicitudes Pendientes</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="display:none">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="ConsultasActivas">Consultas Activas</a>
                         </li>
+                        <li>
+                            <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Crear">Solicitar Consulta</a>
+                        </li>
                     </ul>
-                    <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Crear">Solicitar Consulta</a>
+                    <p id="iniciarS">Iniciar Sesión -></p>
                     <img src=@(Url.Content("~/images/Usuario.png")) width="80px" id="iconoUsuario" onclick="mostrarLogin()">
                 </div>
             </div>
@@ -54,16 +57,37 @@
     </div>
     </header>
 
-    <form id="formularioLogin">
+
+    @{
+        var usuario = Context.Session.GetString("Usuario");
+    }
+    <form id="formularioLogin" method="post" action="/Acceso/Login">
         <p id="tituloForm">Iniciar sesión</p>
         <hr>
-        <input type="text" id="usuario" class="campo" placeholder="Usuario" required><br>
-        <input type="password" id="contrasena" class="campo" placeholder="Contraseña" required><br><br>
+        <input type="text" id="usuario" name="usuario" class="campo" placeholder="Usuario" required><br>
+        <input type="password" id="contrasena" name="password" class="campo" placeholder="Contraseña" required><br><br>
         <div style="display: flex; justify-content: space-between">
             <button type="submit" class="login-btn" id="ingresar">Ingresar</button>
             <button type="button" class="login-btn" id="cancelar">Cancelar</button>
         </div>
     </form>
+    @if (usuario != null)
+    {
+        <div id="usuarioSesion" style="color:white; padding:10px;">
+            Bienvenido, @usuario
+            <a href="/Acceso/Logout" style="margin-left:10px; color:yellow;">Cerrar sesión</a>
+        </div>
+
+        <script>
+            window.usuarioLogueado = true;
+        </script>
+    }
+    else
+    {
+        <script>
+            window.usuarioLogueado = false;
+        </script>
+    }
 
     @if (TempData["CrearExitoso"] != null)
     {
@@ -77,5 +101,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @if (TempData["LoginError"] != null)
+    {
+        <script>
+            alert("@TempData["LoginError"]");
+        </script>
+    }
+
 </body>
 </html>

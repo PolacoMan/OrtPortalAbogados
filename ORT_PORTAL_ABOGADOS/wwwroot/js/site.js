@@ -4,17 +4,21 @@
 // Write your JavaScript code.
 function mostrarLogin() {
     let formulario = document.getElementById('formularioLogin');
-    let icono = document.getElementById('iconoUsuario');
     let cerrar = document.getElementById('cancelar');
 
-    icono.addEventListener('click', function () {
-        formulario.style.display = "block";
-    });
+    document.getElementById('iconoUsuario').onclick = function () {
+        if (!window.usuarioLogueado) {
+            formulario.style.display = "block";
+        } else {
+            alert("Ya iniciaste sesión.");
+        }
+    };
 
-    cerrar.addEventListener('click', function () {
+    cerrar.onclick = function () {
         formulario.style.display = "none";
-    });
+    };
 }
+
 //function setPrecio() {
 //    let btnsSetPrecio = document.getElementsByClassName('btn-precio');
 //    let precios = document.getElementsByName('precio');
@@ -46,7 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            // Encontramos el form de aceptar en la misma fila
             let aceptarForm = form.closest('tr').querySelector('.form-aceptar');
             if (aceptarForm) {
                 aceptarForm.querySelector('.input-precio-hidden').value = precio;
@@ -56,6 +59,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll('.ocultar').forEach(boton => {
+
+        boton.addEventListener('click', function () {
+
+            let fila = this.closest('.solicitud');
+            fila.style.display = 'none';
+
+        });
+
+    });
+
+});
+
+
+
 window.onload = function () {
     mostrarLogin();
 };
+
+const formularioLogin = document.getElementById("formularioLogin");
+const btnCancelar = document.getElementById("cancelar");
+
+if (btnAbrirLogin) {
+    btnAbrirLogin.addEventListener("click", function (e) {
+
+        if (window.usuarioLogueado) {
+            e.preventDefault();
+            alert("Ya iniciaste sesión.");
+            return;
+        }
+
+        formularioLogin.style.display = "block";
+    });
+}
+
+if (btnCancelar) {
+    btnCancelar.addEventListener("click", function () {
+        formularioLogin.style.display = "none";
+    });
+}
+
+if (window.usuarioLogueado) {
+    if (formularioLogin) {
+        formularioLogin.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const formLogin = document.getElementById("formularioLogin");
+
+    formLogin.addEventListener("submit", function (e) {
+        formLogin.submit();
+    });
+});

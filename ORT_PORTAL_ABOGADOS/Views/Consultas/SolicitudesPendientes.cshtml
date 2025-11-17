@@ -16,15 +16,15 @@
             <th>Mail Cliente</th>
             <th>Definir Precio</th>
             <th>Aceptar</th>
-            <th>Rechazar</th>
+            <th>Ocultar (Temporalmente)</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var consulta in Model)
         {
-            <tr>
+            <tr class="solicitud">
                 <td>@consulta.Id</td>
-                <td>@consulta.Descripcion</td>
+                <td><textarea id="campoDescp">@consulta.Descripcion</textarea></td>
                 <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
                 <td>@consulta.MailCliente</td>
                 <td>
@@ -42,8 +42,7 @@
                     </form>
                 </td>
                 <td>
-                    <a asp-controller="Consultas" asp-action="RechazarSolicitud" asp-route-id="@consulta.Id"
-                       class="btn-rechazar">Rechazar Solicitud</a>
+                    <button class="ocultar btn-rechazar">Ocultar Solicitud</button>
                 </td>
             </tr>
         }

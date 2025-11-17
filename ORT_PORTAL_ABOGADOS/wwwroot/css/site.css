@@ -391,6 +391,15 @@ label {
     border-radius: 10px
 }
 
+#iniciarS {
+    color: aliceblue;
+    text-decoration: underline;
+    font-size: 20px;
+    display: inline-block;
+    margin: 0;
+    padding: 8px;
+}
+
 // Quienes Somos ----------------------------------------------------------------------------------------------------------------
 
 #crearSolForm {
@@ -498,4 +507,14 @@ label {
     padding: 20px;
     border: 2px solid black;
     border-radius: 10px
+}
+
+#campoDescp {
+    width: 400px;
+    max-height: 400px;
+    min-height: 72.8px;
+    border: medium solid goldenrod;
+    background: rgb(25, 67, 104);
+    padding: 10px;
+    color: aliceblue;
 }
