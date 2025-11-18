@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Elfie.Serialization;
 using Microsoft.EntityFrameworkCore;
 using ORT_PORTAL_ABOGADOS.Context;
 using ORT_PORTAL_ABOGADOS.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ORT_PORTAL_ABOGADOS.Controllers
 {
@@ -58,11 +61,76 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(abogado);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                bool existe = await YaExiste(abogado.Tomo, abogado.Folio, abogado.Dni, abogado.Usuario);
+                
+                if (!existe)
+                {
+                    var esValido = await ValidarAbogado(abogado.Tomo, abogado.Folio, abogado.Dni, (int)abogado.Genero, abogado.Nombre, abogado.Apellido);
+
+                    if (esValido)
+                    {
+                        _context.Add(abogado);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                    {
+                        TempData["RegisterError"] = "Error al validar abogado, corrobore los datos ingresados.";
+                    }
+                } else
+                {
+                    TempData["RegisterError"] = "Error al validar abogado, los datos pertenecen a un profesional ya registrado.";
+                }
+                
             }
             return View(abogado);
+        }
+
+        private async Task<bool> ValidarAbogado(int tomo, int folio, int nroDocumento, int genero, string nombre, string apellido)
+        {
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            using var client = new HttpClient(handler);
+            client.BaseAddress = new Uri("https://localhost:7136/");
+
+            var request = new
+            {
+                tomo = tomo,
+                folio = folio,
+                nroDocumento = nroDocumento,
+                genero = genero,
+                nombre = nombre,
+                apellido = apellido
+            };
+
+            var response = await client.PostAsJsonAsync("ValidarAbogado", request);
+
+            if (!response.IsSuccessStatusCode)
+                return false; // evita excepciones si la API falla
+
+            bool existe = await response.Content.ReadFromJsonAsync<bool>();
+            return existe;
+        }
+
+        private async Task<bool> YaExiste(int tomo, int folio, int dni, string usuario)
+        {
+            bool valueResult = false;
+
+            var abogado = await _context.Abogados
+                .FirstOrDefaultAsync(a => a.Tomo == tomo ||
+                                          a.Folio == folio ||
+                                          a.Dni == dni ||
+                                          a.Usuario == usuario);
+
+            if (abogado != null)
+            {
+                valueResult = true;
+            }
+
+            return valueResult;
         }
 
         // GET: Abogados/Edit/5

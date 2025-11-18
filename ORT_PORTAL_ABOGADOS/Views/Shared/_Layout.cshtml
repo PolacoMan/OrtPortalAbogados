@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ORT_PORTAL_ABOGADOS</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -22,7 +22,7 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item" >
+                        <li class="nav-item" style="display: none">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Abogados" asp-action="Index">Abogado</a>
                         </li>
                         <li class="nav-item" style="display: none">
@@ -34,16 +34,18 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="quienesSomos">Quienes Somos</a>
                         </li>
-                        <li class="nav-item" style="display:none">
+                        <li class="nav-item" style="display: none">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="SolicitudesPendientes">Solicitudes Pendientes</a>
                         </li>
-                        <li class="nav-item" style="display:none">
+                        <li class="nav-item" style="display: none">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="ConsultasActivas">Consultas Activas</a>
                         </li>
                         <li>
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Crear">Solicitar Consulta</a>
                         </li>
                     </ul>
+
+                    <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Abogados" asp-action="Create">Registro de Abogados</a>
                     <p id="iniciarS">Iniciar Sesión -></p>
                     <img src=@(Url.Content("~/images/Usuario.png")) width="80px" id="iconoUsuario" onclick="mostrarLogin()">
                 </div>
@@ -64,7 +66,7 @@
     <form id="formularioLogin" method="post" action="/Acceso/Login">
         <p id="tituloForm">Iniciar sesión</p>
         <hr>
-        <input type="text" id="usuario" name="usuario" class="campo" placeholder="Usuario" required><br>
+        <input type="text" id="usuario" name="usuario" class="campo" placeholder="Mail" required><br>
         <input type="password" id="contrasena" name="password" class="campo" placeholder="Contraseña" required><br><br>
         <div style="display: flex; justify-content: space-between">
             <button type="submit" class="login-btn" id="ingresar">Ingresar</button>

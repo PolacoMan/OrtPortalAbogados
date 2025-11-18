@@ -19,17 +19,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var consulta in Model)
-        {
-            <tr>
-                <td>@consulta.Id</td>
-                <td><textarea id="campoDescp">@consulta.Descripcion</textarea></td>
-                <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
-                <td>@consulta.MailCliente</td>
-                <td>@consulta.Precio</td>
-                <td><button> <a asp-controller="Consultas" asp-action="FinalizarConsulta" asp-route-id="@consulta.Id">Finalizar Consulta</a></button></td>
-            </tr>
+        @{
+            var contadorConsultas = 0;
+            @foreach (var consulta in Model)
+            {
+                contadorConsultas++;
+                <tr>
+                    <td>@contadorConsultas</td>
+                    <td><textarea readonly id="campoDescp">@consulta.Descripcion</textarea></td>
+                    <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
+                    <td>@consulta.MailCliente</td>
+                    <td>@consulta.Precio</td>
+                    <td><button> <a asp-controller="Consultas" asp-action="FinalizarConsulta" asp-route-id="@consulta.Id">Finalizar Consulta</a></button></td>
+                </tr>
+            }
         }
+        
     </tbody>
 </table>
 

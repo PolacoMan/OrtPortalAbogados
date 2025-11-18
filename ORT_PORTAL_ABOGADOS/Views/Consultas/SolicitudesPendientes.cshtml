@@ -20,32 +20,38 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var consulta in Model)
-        {
-            <tr class="solicitud">
-                <td>@consulta.Id</td>
-                <td><textarea id="campoDescp">@consulta.Descripcion</textarea></td>
-                <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
-                <td>@consulta.MailCliente</td>
-                <td>
-                    <form asp-controller="Consultas" asp-action="SetPrecio" method="post" class="form-precio" data-id="@consulta.Id">
-                        <input type="hidden" name="consultaId" value="@consulta.Id" />
-                        <input type="number" min="1" name="precio" class="campo" placeholder="Precio" required>
-                        <button type="submit" class="login-btn btn-precio">Ingresar</button>
-                    </form>
-                </td>
-                <td>
-                    <form asp-controller="Consultas" asp-action="AceptarSolicitud" method="post" class="form-aceptar" style="display:none">
-                        <input type="hidden" name="id" value="@consulta.Id" />
-                        <input type="hidden" name="precio" class="input-precio-hidden" />
-                        <button type="submit" class="btn-aceptar">Aceptar Solicitud</button>
-                    </form>
-                </td>
-                <td>
-                    <button class="ocultar btn-rechazar">Ocultar Solicitud</button>
-                </td>
-            </tr>
+        @{
+            var contadorConsultas = 0;
+
+            @foreach (var consulta in Model)
+            {
+                contadorConsultas++;
+                <tr class="solicitud">
+                    <td>@contadorConsultas</td>
+                    <td><textarea readonly id="campoDescp">@consulta.Descripcion</textarea></td>
+                    <td>@consulta.NombreCliente, @consulta.ApellidoCliente</td>
+                    <td>@consulta.MailCliente</td>
+                    <td>
+                        <form asp-controller="Consultas" asp-action="SetPrecio" method="post" class="form-precio" data-id="@consulta.Id">
+                            <input type="hidden" name="consultaId" value="@consulta.Id" />
+                            <input type="number" min="1" name="precio" class="campo" placeholder="Precio" required>
+                            <button type="submit" class="login-btn btn-precio">Ingresar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-controller="Consultas" asp-action="AceptarSolicitud" method="post" class="form-aceptar" style="display:none">
+                            <input type="hidden" name="id" value="@consulta.Id" />
+                            <input type="hidden" name="precio" class="input-precio-hidden" />
+                            <button type="submit" class="btn-aceptar">Aceptar Solicitud</button>
+                        </form>
+                    </td>
+                    <td>
+                        <button class="ocultar btn-rechazar">Ocultar Solicitud</button>
+                    </td>
+                </tr>
+            }
         }
+        
     </tbody>
 </table>
 <footer id="Pie" style="margin-top : 250px">

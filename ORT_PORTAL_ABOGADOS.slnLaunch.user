@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "ORT_PORTAL_ABOGADOS\\ORT_PORTAL_ABOGADOS.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "APIs\\RegistroAbogados\\RegistroAbogados.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
