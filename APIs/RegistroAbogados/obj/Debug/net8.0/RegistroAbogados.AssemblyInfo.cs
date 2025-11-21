@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RegistroAbogados")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eced81bad0c25082795003068fa220113ad5611e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+279301e0dc4065e69afe0b4706c3e930d015dd7e")]
 [assembly: System.Reflection.AssemblyProductAttribute("RegistroAbogados")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RegistroAbogados")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

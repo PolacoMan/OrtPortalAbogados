@@ -13,6 +13,8 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
     public class ConsultasController : Controller
     {
         private readonly DBContext _context;
+        private readonly AccesoController _acceso;
+
 
         public ConsultasController(DBContext context)
         {
@@ -21,10 +23,23 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
 
         public async Task<IActionResult> ConsultasActivas()
         {
-            //método del controller para mostrar las consultas activas
-            var consultasActivasList = await _context.Consultas.Where(c => c.EstaActiva == true).ToListAsync();
+            var usuario = HttpContext.Session.GetString("Usuario");
+
+            if (usuario == null)
+                return RedirectToAction("Login", "Acceso");
+
+            var abogado = await _context.Abogados
+                .FirstOrDefaultAsync(a => a.Usuario == usuario);
+
+            int idUsuario = abogado?.Id ?? -1;
+
+            ViewBag.IdUsuario = idUsuario;
+
+            var consultasActivasList = await _context.Consultas.ToListAsync();
+
             return View(consultasActivasList);
         }
+
         public async Task<IActionResult> SolicitudesPendientes()
         {
             //método del controller para mostrar las solicitudes pendientes
@@ -211,19 +226,14 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
             var consulta = await _context.Consultas.FindAsync(id);
             if (consulta == null)
                 return NotFound();
-
-            //if (consulta.Precio != 0)
-            //{
-            //    consulta.CambiarEstado();
-            //    await _context.SaveChangesAsync();
-            //}
-
+            var usuario = HttpContext.Session.GetString("Usuario");
+            var abogado = await _context.Abogados.FirstOrDefaultAsync(a => a.Usuario == usuario);
+            consulta.IdAbogado = abogado.Id;
             consulta.SetPrecio(precio);
             consulta.CambiarEstado();
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(SolicitudesPendientes));
         }
-
     }
 }

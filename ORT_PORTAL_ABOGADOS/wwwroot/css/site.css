@@ -11,6 +11,7 @@ body {
     width: 100%;
     background-color: rgb(47, 44, 44);
     border-top: solid medium goldenrod;
+    box-shadow: 0px -5px 10px black;
 }
 
 #textoPie {
@@ -80,6 +81,7 @@ h3 {
 header {
     background-color: rgb(25, 67, 104);
     border-bottom: solid medium goldenrod;
+    box-shadow: 0px 5px 10px black;
 }
 .nav-link {
     color: aliceblue;
@@ -266,7 +268,8 @@ h2 {
 .division {
     color: rgb(36, 34, 34);
     width: 80%;
-    border: solid thin;
+    margin: auto;
+    border: solid medium;
 }
 
 #grid {
@@ -517,4 +520,61 @@ label {
     background: rgb(25, 67, 104);
     padding: 10px;
     color: aliceblue;
+}
+
+.table {
+    margin-top: 50px;
+    margin-bottom: 200px
+}
+.solicitud {
+    border-bottom: solid black;
+    box-shadow: 0px 5px 10px grey;
+}
+
+#privacyTitle {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: black
+}
+
+#politicas {
+    justify-content: space-between;
+    text-align: center;
+    background-color: aliceblue;
+    border-radius: 5%;
+    padding: 30px;
+    margin: auto;
+    border: solid thin black;
+    width: 90%;
+    margin-bottom: 100px;
+}
+
+#registro {
+    background-color: rgb(25, 67, 104);
+    margin: auto;
+    border: solid medium goldenrod;
+    border-radius: 10%;
+    padding: 20px;
+    color: aliceblue;
+    margin-bottom: 100px;
+    max-width: 80%;
+}
+
+#botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px
+}
+
+#finalizar {
+    background-color: rgb(25, 67, 104);
+    margin-left: 20%;
+    margin-right: 20%;
+    border: solid medium goldenrod;
+    border-radius: 10%;
+    padding: 20px;
+    color: aliceblue;
+    margin-bottom: 100px;
+    max-width: 80%;
 }

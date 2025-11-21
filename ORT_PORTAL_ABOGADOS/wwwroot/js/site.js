@@ -116,3 +116,28 @@ document.addEventListener("DOMContentLoaded", function () {
         formLogin.submit();
     });
 });
+
+
+function validarDatos() {
+    return validarMail() && validarPassword();
+}
+
+function validarMail() {
+    const emailInput = document.getElementById("mailCliente");
+    const email = emailInput.value;
+    if (!email.includes("@") || (!email.endsWith(".com") && !email.endsWith(".ar")) || email.length > 74 || email.length < 16) {
+        alert("Por favor, ingrese un correo electrónico válido.");
+        return false;
+    }
+    return true;
+}
+
+function validarPassword() {
+    const passwordInput = document.getElementById("passwordCliente");
+    const password = passwordInput.value;
+    if (password.length < 6 || password.length > 18 || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+        alert("La contraseña debe tener entre 6 y 18 caracteres, contener al menos un número y una mayúscula.");
+        return false;
+    }
+    return true;
+}

@@ -71,7 +71,9 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
                     {
                         _context.Add(abogado);
                         await _context.SaveChangesAsync();
-                        return RedirectToAction(nameof(Index));
+                        HttpContext.Session.SetString("Usuario", abogado.Usuario);
+                        TempData["RegistroOK"] = "Su registro fue exitoso y el login se realizó automáticamente.";
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -109,7 +111,7 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
             var response = await client.PostAsJsonAsync("ValidarAbogado", request);
 
             if (!response.IsSuccessStatusCode)
-                return false; // evita excepciones si la API falla
+                return false; 
 
             bool existe = await response.Content.ReadFromJsonAsync<bool>();
             return existe;

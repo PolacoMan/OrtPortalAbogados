@@ -25,8 +25,8 @@ namespace RegistroAbogados.Controllers
                 a.Folio == request.Folio &&
                 a.NroDocumento == request.NroDocumento &&
                 a.Genero == request.Genero &&
-                a.Nombre == request.Nombre &&
-                a.Apellido == request.Apellido
+                a.Nombre.Trim().ToLower() == request.Nombre.Trim().ToLower() &&
+                a.Apellido.Trim().ToLower() == request.Apellido.Trim().ToLower()
             );
 
             return Ok(existe);

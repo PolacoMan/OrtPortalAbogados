@@ -32,16 +32,21 @@ namespace ORT_PORTAL_ABOGADOS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private async Task<Abogado> BuscarUsuario(string user)
+        public async Task<Abogado> BuscarUsuario(string user)
         {
             var abogado = await _context.Abogados.FirstOrDefaultAsync(a => a.Usuario == user);
             return abogado;
         }
-
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<int> GetAbogadoId(string usuario)
+        {
+            var abogado = await BuscarUsuario(usuario);
+            return abogado.Id;
         }
     }
 

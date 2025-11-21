@@ -10,8 +10,10 @@
 <div>
     <button id="crearSol"><a asp-controller="Home" asp-action="Index" style="color:aliceblue">Volver al Inicio</a></button>
 </div>
-<hr/>
-<div class="row" id="formConsulta">
+<br />
+<hr class="division"/>
+<br />
+<div class="row" id="politicas">
     <form id="crearSolForm" asp-action="Create" method="post">
         @Html.AntiForgeryToken()
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -47,37 +49,6 @@
         </div>
     </form>
 </div>
-
-<footer id="Pie">
-    <h3>Nuestro contacto</h3>
-    <hr style="color: aliceblue;">
-    <br>
-    <br>
-    <div id="contactos">
-        <div>
-            <img src="@(Url.Content("~/images/telefono.png"))" class="Contacto">
-            <p class="contactoTexto"><a href="tel: +5401138595555" id="c1" class="link">Llamanos</a></p>
-        </div>
-        <div>
-            <img src="@(Url.Content("~/images/mail.png"))" class="Contacto">
-            <p class="contactoTexto"><a href="mailto:aguszaku@gmail.com" id="c1" class="link">Escribinos</a></p>
-        </div>
-        <div>
-            <img src="@(Url.Content("~/images/whatsapp.png"))" class="Contacto">
-            <p class="contactoTexto">
-                <a href="https://wa.me/1138595555" target="_blank" id="c1" class="link">
-                    Chateá
-                    con
-                    nosotros
-                </a>
-            </p>
-        </div>
-    </div>
-    <p id="textoPie">
-        © 2025 Equipo 8 | Todos los derechos reservados. <a class="link" target="_blank"
-                                                            href="politicas.html">Política de Privacidad</a>
-    </p>
-</footer>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
