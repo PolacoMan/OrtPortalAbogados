@@ -2,6 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
 function mostrarLogin() {
     let formulario = document.getElementById('formularioLogin');
     let cerrar = document.getElementById('cancelar');
@@ -18,22 +19,6 @@ function mostrarLogin() {
         formulario.style.display = "none";
     };
 }
-
-//function setPrecio() {
-//    let btnsSetPrecio = document.getElementsByClassName('btn-precio');
-//    let precios = document.getElementsByName('precio');
-//    let aceptarBtns = document.getElementsByClassName('btn-aceptar');
-
-//    for (let i = 0; i < btnsSetPrecio.length; i++) {
-//        btnsSetPrecio[i].addEventListener('click', function (e) {
-//            e.preventDefault();
-//            let precio = precios[i].value;
-//            if (precio && parseInt(precio) > 0) {
-//                aceptarBtns[i].style.display = "inline-block";
-//            }
-//        });
-//    }
-//}
 
 document.addEventListener("DOMContentLoaded", function () {
     let formsPrecio = document.querySelectorAll('.form-precio');
@@ -74,27 +59,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
-
 window.onload = function () {
     mostrarLogin();
 };
 
 const formularioLogin = document.getElementById("formularioLogin");
 const btnCancelar = document.getElementById("cancelar");
-
-if (btnAbrirLogin) {
-    btnAbrirLogin.addEventListener("click", function (e) {
-
-        if (window.usuarioLogueado) {
-            e.preventDefault();
-            alert("Ya iniciaste sesión.");
-            return;
-        }
-
-        formularioLogin.style.display = "block";
-    });
-}
 
 if (btnCancelar) {
     btnCancelar.addEventListener("click", function () {
@@ -116,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function () {
         formLogin.submit();
     });
 });
-
 
 function validarDatos() {
     return validarMail() && validarPassword();
@@ -141,3 +110,19 @@ function validarPassword() {
     }
     return true;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    function activarTogglePassword(checkboxId, inputId) {
+        const checkbox = document.getElementById(checkboxId);
+        const input = document.getElementById(inputId);
+
+        if (!checkbox || !input) return;
+
+        checkbox.addEventListener("change", function () {
+            input.type = checkbox.checked ? "text" : "password";
+        });
+    }
+    activarTogglePassword("mostrarPass", "contrasena");
+    activarTogglePassword("mostrarPassCliente", "passwordCliente");
+});
+

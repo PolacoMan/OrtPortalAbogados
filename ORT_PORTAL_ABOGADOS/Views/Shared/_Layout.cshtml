@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ORT_PORTAL_ABOGADOS.styles.css" asp-append-version="true" />
 </head>
+
 @{
         var usuario = Context.Session.GetString("Usuario");
 }
@@ -17,27 +18,25 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3" id="nav">
             <div class="container-fluid">
                 <a><img src="@(Url.Content("~/images/logo.png"))" id="logo" width="80px" alt="Logo"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <!--<li class="nav-item" style="display: none">
-                            <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Abogados" asp-action="Index">Abogado</a>
-                        </li>
-                        <li class="nav-item" style="display: none">
-                            <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Index">Consulta</a>
-                        </li>-->
+
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Home" asp-action="quienesSomos">Quienes Somos</a>
                         </li>
+
                         @if (!string.IsNullOrEmpty(usuario))
                         {
                             <li class="nav-item">
@@ -47,52 +46,60 @@
                                 <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="ConsultasActivas">Consultas Activas</a>
                             </li>
                         }
-                        
-                        <li>
+
+                        <li class="nav-item">
                             <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Consultas" asp-action="Crear">Solicitar Consulta</a>
                         </li>
                     </ul>
+
                     @if (string.IsNullOrEmpty(usuario))
                     {
                         <a class="nav-link" style="color: aliceblue" asp-area="" asp-controller="Abogados" asp-action="Create">Registro de Abogados</a>
                         <p id="iniciarS">Iniciar Sesión -></p>
                     }
+
                     <img src=@(Url.Content("~/images/Usuario.png")) width="80px" id="iconoUsuario" onclick="mostrarLogin()">
                 </div>
             </div>
         </nav>
-   
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </header>
 
     <form id="formularioLogin" method="post" action="/Acceso/Login">
         <p id="tituloForm">Iniciar sesión</p>
         <hr>
+
         <input type="text" id="usuario" name="usuario" class="campo" placeholder="Mail" required><br>
         <input type="password" id="contrasena" name="password" class="campo" placeholder="Contraseña" required><br><br>
+        <div class="mostrar-pass-container">
+            <input type="checkbox" id="mostrarPass">
+            <label for="mostrarPass">Mostrar contraseña</label>
+        </div>
+        <br />
         <div style="display: flex; justify-content: space-between">
             <button type="submit" class="login-btn" id="ingresar">Ingresar</button>
-            <button class="login-btn"><a asp-area="" asp-controller="Abogados" asp-action="Create" style="color:aliceblue">Registrarse</a></button>
+
+            <button class="login-btn">
+                <a asp-area="" asp-controller="Abogados" asp-action="Create" style="color:aliceblue">Registrarse</a>
+            </button>
+
             <button type="button" class="login-btn" id="cancelar">Cancelar</button>
         </div>
     </form>
+
 
     @if (TempData["CrearExitoso"] != null)
     {
         <script>
             alert('Su consulta se ha creado correctamente.');
-            window.location.href = '@Url.Action("Index","Home")';
+            window.location.href = '@Url.Action("Index", "Home")';
         </script>
     }
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 
     @if (TempData["LoginError"] != null)
     {
@@ -100,6 +107,7 @@
             alert("@TempData["LoginError"]");
         </script>
     }
+
     @if (TempData["RegistroOK"] != null)
     {
         <script>
@@ -107,52 +115,63 @@
         </script>
     }
 
-</body>
-<footer id="Pie">
-    <h3>Nuestro contacto</h3>
-    <hr style="color: aliceblue;">
-    <br>
-    <br>
-    <div id="contactos">
-        <div>
-            <img src="@(Url.Content("~/images/telefono.png"))" class="Contacto">
-            <p class="contactoTexto"><a href="tel: +5401138595555" id="c1" class="link">Llamanos</a></p>
-        </div>
-        <div>
-            <img src="@(Url.Content("~/images/mail.png"))" class="Contacto">
-            <p class="contactoTexto"><a href="mailto:Estudio.Saraza@gmail.com" id="c1" class="link">Escribinos</a></p>
-        </div>
-        <div>
-            <img src="@(Url.Content("~/images/whatsapp.png"))" class="Contacto">
-            <p class="contactoTexto">
-                <a href="https://wa.me/1138595555" target="_blank" id="c1" class="link">
-                    Chateá
-                    con
-                    nosotros
-                </a>
-            </p>
-        </div>
-    </div>
-    <p id="textoPie">
-        © 2025 Equipo 8 | Todos los derechos reservados. <a class="link" target="_blank"
-                                                            href="politicas.html">Política de Privacidad</a>
-    </p>
-    @if (usuario != null)
-    {
-        <div id="usuarioSesion" style="color:white; padding:10px;">
-            Bienvenido, @usuario
-            <a href="/Acceso/Logout" style="margin-left:10px; color:yellow;">Cerrar sesión</a>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- tu JS (donde está mostrarPass) -->
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <footer id="Pie">
+        <h3>Nuestro contacto</h3>
+        <hr style="color: aliceblue;">
+        <br><br>
+
+        <div id="contactos">
+            <div>
+                <img src="@(Url.Content("~/images/telefono.png"))" class="Contacto">
+                <p class="contactoTexto"><a href="tel: +5401138595555" class="link">Llamanos</a></p>
+            </div>
+
+            <div>
+                <img src="@(Url.Content("~/images/mail.png"))" class="Contacto">
+                <p class="contactoTexto"><a href="mailto:Estudio.Saraza@gmail.com" class="link">Escribinos</a></p>
+            </div>
+
+            <div>
+                <img src="@(Url.Content("~/images/whatsapp.png"))" class="Contacto">
+                <p class="contactoTexto">
+                    <a href="https://wa.me/1138595555" target="_blank" class="link">
+                        Chateá con nosotros
+                    </a>
+                </p>
+            </div>
         </div>
 
-        <script>
-            window.usuarioLogueado = true;
-        </script>
-    }
-    else
-    {
-        <script>
-            window.usuarioLogueado = false;
-        </script>
-    }
-</footer>
+        <p id="textoPie">
+            © 2025 Equipo 8 | Todos los derechos reservados.
+            <a class="link" target="_blank" href="politicas.html">Política de Privacidad</a>
+        </p>
+
+        @if (usuario != null)
+        {
+            <div id="usuarioSesion" style="color:white; padding:10px;">
+                Bienvenido, @usuario
+                <a href="/Acceso/Logout" style="margin-left:10px; color:yellow;">Cerrar sesión</a>
+            </div>
+
+            <script>
+                window.usuarioLogueado = true;
+            </script>
+        }
+        else
+        {
+            <script>
+                window.usuarioLogueado = false;
+            </script>
+        }
+    </footer>
+
+</body>
 </html>

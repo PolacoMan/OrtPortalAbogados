@@ -58,7 +58,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" id="passwordCliente"/>
+                <div style="display:flex; flex-direction:column;">
+                    <input asp-for="Password" class="form-control" id="passwordCliente" type="password" />
+                </div>
+                <div style="margin-top: 5px;">
+                    <input type="checkbox" id="mostrarPassCliente" />
+                    <label for="mostrarPassCliente">Mostrar contraseña</label>
+                </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div id="botones">
@@ -66,7 +72,7 @@
                     <input type="submit" value="Registrarse" class="btn btn-primary" />
                 </div>
                 <div style="margin-right: 20px">
-                    <a asp-controller="Home" asp-action="Index" class="nav-link">Volver a la Lista</a>
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">Volver a Inicio</a>
                 </div>
             </div>
         </form>

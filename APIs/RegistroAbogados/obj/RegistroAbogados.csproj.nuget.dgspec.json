@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\agusz\\source\\repos\\PolacoMan\\Repo_2\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj": {}
+    "D:\\Desktop\\ORTPortalAbogados\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj": {}
   },
   "projects": {
-    "C:\\Users\\agusz\\source\\repos\\PolacoMan\\Repo_2\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj": {
+    "D:\\Desktop\\ORTPortalAbogados\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\agusz\\source\\repos\\PolacoMan\\Repo_2\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj",
+        "projectUniqueName": "D:\\Desktop\\ORTPortalAbogados\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj",
         "projectName": "RegistroAbogados",
-        "projectPath": "C:\\Users\\agusz\\source\\repos\\PolacoMan\\Repo_2\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj",
-        "packagesPath": "C:\\Users\\agusz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\agusz\\source\\repos\\PolacoMan\\Repo_2\\OrtPortalAbogados\\APIs\\RegistroAbogados\\obj\\",
+        "projectPath": "D:\\Desktop\\ORTPortalAbogados\\OrtPortalAbogados\\APIs\\RegistroAbogados\\RegistroAbogados.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "D:\\Desktop\\ORTPortalAbogados\\OrtPortalAbogados\\APIs\\RegistroAbogados\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\agusz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

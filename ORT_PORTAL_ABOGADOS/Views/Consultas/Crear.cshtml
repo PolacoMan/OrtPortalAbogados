@@ -14,7 +14,7 @@
 <hr class="division"/>
 <br />
 <div class="row" id="politicas">
-    <form id="crearSolForm" asp-action="Create" method="post">
+    <form id="crearSolForm" asp-action="Create" method="post" onsubmit="return validarMail()">
         @Html.AntiForgeryToken()
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -33,7 +33,7 @@
 
             <div class="form-col">
                 <label asp-for="MailCliente" class="control-label">Mail:</label>
-                <input asp-for="MailCliente" class="texto input-field" placeholder="Mail..."/>
+                <input asp-for="MailCliente" id="mailCliente" class="texto input-field" placeholder="Mail..." />
                 <span asp-validation-for="MailCliente" class="text-danger"></span>
             </div>
         </div>
